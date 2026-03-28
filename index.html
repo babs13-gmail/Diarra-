@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diarra Bassoum - Docteure</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+canvas{position:fixed;top:0;left:0;z-index:-1}
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:url('WA_1773731289325.jpeg') center/cover no-repeat;
+filter:brightness(0.25);
+}
+
+.hero-content{position:relative;z-index:2}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:4.5rem;
+background:linear-gradient(90deg,#22c55e,#4ade80);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+margin-top:10px;
+font-size:1.5rem;
+letter-spacing:2px;
+opacity:0.8;
+}
+
+.btn{
+margin-top:30px;
+padding:15px 45px;
+border-radius:50px;
+background:linear-gradient(90deg,#22c55e,#16a34a);
+border:none;
+color:white;
+cursor:pointer;
+box-shadow:0 0 30px #22c55e;
+}
+
+.section{
+padding:120px 20px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+padding:50px;
+border-radius:25px;
+margin:40px 0;
+}
+
+.title{
+font-family:'Playfair Display',serif;
+font-size:2.2rem;
+margin-bottom:25px;
+color:#4ade80;
+}
+
+.text{
+font-size:1.1rem;
+line-height:2;
+opacity:0.9;
+margin-bottom:20px;
+}
+
+.highlight{
+color:#22c55e;
+font-weight:600;
+}
+
+.profile-img{
+width:240px;height:240px;border-radius:50%;
+object-fit:cover;
+border:5px solid #22c55e;
+margin:auto;display:block;margin-top:-140px;
+box-shadow:0 0 60px #22c55e;
+}
+
+.timeline{
+margin-top:40px;
+}
+
+.timeline-item{
+margin-bottom:20px;
+padding-left:20px;
+border-left:3px solid #22c55e;
+}
+
+.timeline-item strong{
+color:#4ade80;
+}
+
+footer{text-align:center;padding:40px;opacity:0.6}
+
+</style></head>
+<body><canvas id="bg"></canvas>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Diarra Bassoum</h1>
+<div class="subtitle">Docteure en Médecine Dentaire</div>
+<button class="btn" onclick="scrollToSection()">Découvrir son histoire</button>
+</div>
+</section><section class="section" id="about">
+<div class="container"><img src="WA_1773731289325.jpeg" class="profile-img"><div class="card">
+<div class="title">Un parcours d’exception</div><div class="text">
+Depuis ses premières années à <span class="highlight">Nguekôkh</span>, Diarra Bassoum s’est distinguée par son sérieux et sa discipline.
+Son parcours scolaire, du CEM jusqu’au lycée, a été marqué par une régularité et une détermination constantes.
+</div><div class="text">
+En <span class="highlight">2020</span>, à seulement <span class="highlight">16 ans</span>, elle obtient son baccalauréat.
+Une réussite qui témoigne de son avance et de son engagement dans les études.
+</div><div class="text">
+Elle poursuit ensuite à l’Université Cheikh Anta Diop de Dakar, où elle s’engage dans un cursus exigeant en médecine dentaire.
+Durant ces années, elle se distingue par sa rigueur et son sérieux.
+</div><div class="text">
+En <span class="highlight">2026</span>, elle devient officiellement <span class="highlight">Docteure en Médecine Dentaire</span>,
+aboutissement d’un parcours construit avec patience et travail.
+</div></div><div class="card">
+<div class="title">Chronologie</div><div class="timeline">
+<div class="timeline-item"><strong>Nguekôkh :</strong> Parcours scolaire complet</div>
+<div class="timeline-item"><strong>2020 :</strong> Bac obtenu à 16 ans</div>
+<div class="timeline-item"><strong>UCAD :</strong> Études en médecine dentaire</div>
+<div class="timeline-item"><strong>2026 :</strong> Diplôme obtenu</div>
+</div></div><div class="card">
+<div class="title">Une inspiration</div><div class="text">
+Son parcours illustre parfaitement la valeur du <span class="highlight">travail</span>, de la <span class="highlight">discipline</span> et de la <span class="highlight">persévérance</span>.
+Elle représente aujourd’hui un exemple concret de réussite construite sur des efforts constants.
+</div></div></div>
+</section><footer>
+Créé avec fierté ❤️
+</footer><script>
+function scrollToSection(){
+document.getElementById("about").scrollIntoView({behavior:"smooth"});
+}
+
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle='rgba(34,197,94,0.5)';
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+p.y+=0.5;
+if(p.y>canvas.height)p.y=0;
+});
+requestAnimationFrame(animate);
+}
+animate();
+</script><!-- Citation Section -->
+<section class="section fade-in">
+    <h2>💭 Sa philosophie</h2>
+    <div style="margin-top:20px; padding:30px; border-radius:20px; background:rgba(255,255,255,0.05); font-style:italic; font-size:1.3rem; line-height:1.6;">
+        “La patience est dure, mais sa récompense est pure.”
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="text-align:center; padding:20px; margin-top:40px; font-size:0.9rem; opacity:0.7;">
+    Développé par <strong>Mr.B</strong>
+</footer>
+
+</body>
+        </html>
